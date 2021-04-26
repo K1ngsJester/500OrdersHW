@@ -10,25 +10,30 @@
 </head>
 
 <body>
-<h2>Calories Counter</h2>
+<h2>Random Order Generator</h2>
 <div class="grid-container">
    
 
+<div  class="buttons">
+    <h2>Order Details</h2><br />
+    <b><label for="StoreID">Store ID:</label></b>
+    <span id="StoreID"></span> <br /><br />
+    <b><label for="SalesPersonID">Sales Person ID:</label></b>
+    <span id="SalesPersonID"></span> <br /><br />
+    <b><label for="CdID">CD ID:</label></b>
+    <span id="CdID"></span> <br /><br />
+    <b><label for="PricePaid">Price Paid:</label></b>
+    <span id="PricePaid"></span> <br /><br />
+    <br><br>
+    <div>
+        <button class="button" type="button" id=Create>CREATE</button>
+ 
+        <button class="button" type="button" id=Submit-One>SUBMIT-ONE</button>
 
-    <div class="grid-item1">
-        <h3>Calories Log</h3>
-        <p id="StoreID"></p>
-        <p id="SalesPersonID"></p>
-        <p id="CdID"></p>
-
-        <button id="Create">Create</button>
-        <button id="Submit-One">Submit One</button>
-        <button id="Submit-500">Submit 500</button>
-
+        <button class="button" type="button" id=Submit-500>SUBMIT-500</button>
     </div>
-   
-   
 </div>
+   
 
 <script src="/javascripts/index.js"></script>
 </body>
