@@ -19,15 +19,17 @@ document.addEventListener("DOMContentLoaded", function (event) {
     var sID = document.getElementById("StoreID");
     var spID = document.getElementById("SalesPersonID");
     var cdID = document.getElementById("CdID");
+    var pPaid = document.getElementById("PricePaid");
     createOrder();
     sID.innerHTML = tStore;
     spID.innerHTML = tSales;
     cdID.innerHTML = tCd;
+    pPaid.innerHTML = tPrice;
 
     document.getElementById("Submit-One").addEventListener("click", function () {
         tCd = cdID.innerHTML;
         tStore = sID.innerHTML;
-        tPrice = Math.floor(Math.random() * 10 + 5);
+        tPrice = pPaid.innerHTML;
         tSales = spID.innerHTML;
         var oneOrder = new Orders(tCd, tHour, tDay, tStore, tPrice, tSales);
         tHour++;
@@ -35,7 +37,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
             tHour = 0;
             tDay++;
         }
-        tDay++;
         $.ajax({
             url: '/NewOrder' ,
             method: 'POST',
@@ -58,7 +59,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
     document.getElementById("Submit-500").addEventListener("click", function () {
         for (var i = 0; i < 500; i++) {
             createOrder();
-            tPrice = Math.floor(Math.random() * 10 + 5);
             var oneOrder = new Orders(tCd, tHour, tDay, tStore, tPrice, tSales);
             tHour++;
             if (tHour == 23) {
@@ -85,6 +85,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 function createOrder() {
     var ordran = Math.floor(Math.random() * 24 + 1);
+    tPrice = Math.floor(Math.random() * 10 + 5);
     tSales = ordran;
     switch (Math.ceil(ordran / 4)) {
         case 1:
