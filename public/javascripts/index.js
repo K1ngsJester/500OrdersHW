@@ -10,8 +10,8 @@ function Orders(pcdid, phourpurch, pdaypurch, pstoreid, ppricepaid, psalesperson
   var ClientNotes = [];  // our local copy of the cloud data
 
 var tCd;
-var tHour;
-var tDay;
+var tHour = 0;
+var tDay = 0;
 var tStore;
 var tPrice;
 var tSales;
@@ -26,13 +26,16 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     document.getElementById("Submit-One").addEventListener("click", function () {
         tCd = cdID.innerHTML;
-        tHour = Math.floor(Math.random() * 24);
-        tDay = Math.floor(Math.random() * 257);
         tStore = sID.innerHTML;
         tPrice = Math.floor(Math.random() * 10 + 5);
         tSales = spID.innerHTML;
         var oneOrder = new Orders(tCd, tHour, tDay, tStore, tPrice, tSales);
-
+        tHour++;
+        if (tHour == 23) {
+            tHour = 0;
+            tDay++;
+        }
+        tDay++;
         $.ajax({
             url: '/NewOrder' ,
             method: 'POST',
@@ -55,10 +58,13 @@ document.addEventListener("DOMContentLoaded", function (event) {
     document.getElementById("Submit-500").addEventListener("click", function () {
         for (var i = 0; i < 500; i++) {
             createOrder();
-            tHour = Math.floor(Math.random() * 24);
-            tDay = Math.floor(Math.random() * 257);
             tPrice = Math.floor(Math.random() * 10 + 5);
             var oneOrder = new Orders(tCd, tHour, tDay, tStore, tPrice, tSales);
+            tHour++;
+            if (tHour == 23) {
+                tHour = 0;
+                tDay++;
+            }
 
             $.ajax({
                 url: '/NewOrder',
